@@ -18,6 +18,9 @@ function Nav() {
           <li>
             <Link to="About">About</Link>
           </li>
+          <li>
+            <Link to="Cart">Cart</Link>
+          </li>
         </ul>
       </Container>
     </nav>

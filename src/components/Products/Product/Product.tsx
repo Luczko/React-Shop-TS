@@ -1,4 +1,6 @@
 import React from "react";
+import { Producto } from "../../../interface";
+import Button from "../../Button/Button";
 import styles from "./Product.module.css";
 
 interface Props {

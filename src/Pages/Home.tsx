@@ -6,6 +6,7 @@ import HeaderBig from "../components/Header/HeaderBig";
 import HeaderSmall from "../components/Header/HeaderSmall";
 import Products from "../components/Products/Products";
 import Product from "../components/Products/Product/Product";
+import Button from "../components/Button/Button";
 
 import useGetProducts from "../UseGetProducts";
 
@@ -28,12 +29,15 @@ function Home() {
         <Products>
           {getFeatured("desktop").map((e) => {
             return (
-              <Product
-                key={e.id}
-                image={e.image}
-                amount={e.amount}
-                name={e.name}
-              />
+              <>
+                <Product
+                  key={e.id}
+                  image={e.image}
+                  amount={e.amount}
+                  name={e.name}
+                />
+                <Button product={e} />
+              </>
             );
           })}
         </Products>
