@@ -1,13 +1,19 @@
-import Products from "./products.json";
-import { Product } from "./interface";
+import { Producto } from "./interface";
 
 class ProductService {
-  static getProducts(): Product[] {
-    return Products;
-  }
+  // static async getProducts(): Producto[] {
+  //   let products =
+  //   await axios
+  //     .get("http://jsdeveloper-shop-api.s3-website-eu-west-1.amazonaws.com"),
+  //   return products.data;
+  // }
 
-  static getFilteredProducts(name: string, manufacture: string): Product[] {
-    let filtered = Products.filter(
+  static getFilteredProducts(
+    products: Producto[],
+    name: string,
+    manufacture: string
+  ): Producto[] {
+    let filtered = products.filter(
       (e) => e.manufacture === manufacture || manufacture === "All"
     );
 
@@ -20,8 +26,8 @@ class ProductService {
     }
   }
 
-  static getManufacturers(): string[] {
-    let manufacturers = Products.map((e) => e.manufacture);
+  static getManufacturers(products: Producto[]): string[] {
+    let manufacturers = products.map((e) => e.manufacture);
     return ["All", ...Array.from(new Set(manufacturers))];
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import ProductService from "../../Products.service";
+import useGetProducts from "../../UseGetProducts";
 
 const styles = require("./ColumnLeft.module.css");
 
@@ -12,7 +13,9 @@ interface Props {
 }
 
 const ColumnLeft: React.FC<Props> = (props) => {
-  let manufacturers = ProductService.getManufacturers();
+  const { products, loading, error } = useGetProducts();
+
+  let manufacturers = ProductService.getManufacturers(products);
 
   return (
     <div className={styles.column_left}>
@@ -32,11 +35,14 @@ const ColumnLeft: React.FC<Props> = (props) => {
           />
         </div>
         <h4>Manufacturer</h4>
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
         <div>
           {manufacturers.map((e) => {
             return (
               <div>
                 <input
+                  key={e}
                   type="radio"
                   name="manufacturere"
                   id={e}

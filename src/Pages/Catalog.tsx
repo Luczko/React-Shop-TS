@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import Nav from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import Container from "../components/Container/Container";
@@ -6,10 +7,15 @@ import HeaderBig from "../components/Header/HeaderBig";
 import Products from "../components/Products/Products";
 import Product from "../components/Products/Product/Product";
 import ColumnLeft from "../components/ColumnLeft/ColumnLeft";
+
 import ProductService from "../Products.service";
+import useGetProducts from "../UseGetProducts";
+
 import "../App.css";
 
 function Catalog() {
+  const { products, loading, error } = useGetProducts();
+
   const [radio, setRadio] = useState("All");
 
   function onChangeRadio(manufacturer: string): void {
@@ -28,7 +34,11 @@ function Catalog() {
     setName("");
   }
 
-  let products = ProductService.getFilteredProducts(name, radio);
+  let filteredProducts = ProductService.getFilteredProducts(
+    products,
+    name,
+    radio
+  );
 
   return (
     <>
@@ -44,8 +54,10 @@ function Catalog() {
             clear={onClear}
           />
           <div className="column-right">
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
             <Products>
-              {products.map((e) => {
+              {filteredProducts.map((e) => {
                 return (
                   <Product
                     key={e.id}
