@@ -11,6 +11,8 @@ import useGetProducts from "../UseGetProducts";
 import { CartContext } from "../AppContext";
 import Button from "../components/Button/Button";
 
+import "../App.css";
+
 function Cart() {
   const { cart } = useContext(CartContext);
 
@@ -18,17 +20,20 @@ function Cart() {
     <>
       <Nav />
       <Container>
-        <HeaderBig>Welcome to our store</HeaderBig>
-        <HeaderSmall>Your Cart</HeaderSmall>
+        <HeaderBig>Your Cart</HeaderBig>
         <Products>
           {cart.map((e) => {
             return (
-              <Product
-                key={e.id}
-                image={e.image}
-                amount={e.amount}
-                name={e.name}
-              />
+              <div className="product">
+                <Product
+                  key={e.id}
+                  image={e.image}
+                  amount={e.amount}
+                  name={e.name}
+                />
+                <div>quantity: {e.quantity}</div>
+                <Button product={e} action="remove from cart" />
+              </div>
             );
           })}
         </Products>

@@ -12,6 +12,7 @@ import ProductService from "../Products.service";
 import useGetProducts from "../UseGetProducts";
 
 import "../App.css";
+import Button from "../components/Button/Button";
 
 function Catalog() {
   const { products, loading, error } = useGetProducts();
@@ -59,12 +60,15 @@ function Catalog() {
             <Products>
               {filteredProducts.map((e) => {
                 return (
-                  <Product
-                    key={e.id}
-                    image={e.image}
-                    amount={e.amount}
-                    name={e.name}
-                  />
+                  <div className="product">
+                    <Product
+                      key={e.id}
+                      image={e.image}
+                      amount={e.amount}
+                      name={e.name}
+                    />
+                    <Button product={e} action="add to cart" />
+                  </div>
                 );
               })}
             </Products>

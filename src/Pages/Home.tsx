@@ -10,6 +10,8 @@ import Button from "../components/Button/Button";
 
 import useGetProducts from "../UseGetProducts";
 
+import "../App.css";
+
 function Home() {
   const { products, loading, error } = useGetProducts();
 
@@ -29,15 +31,15 @@ function Home() {
         <Products>
           {getFeatured("desktop").map((e) => {
             return (
-              <>
+              <div className="product">
                 <Product
                   key={e.id}
                   image={e.image}
                   amount={e.amount}
                   name={e.name}
                 />
-                <Button product={e} />
-              </>
+                <Button product={e} action="add to cart" />
+              </div>
             );
           })}
         </Products>
@@ -47,12 +49,15 @@ function Home() {
         <Products>
           {getFeatured("tablet").map((e) => {
             return (
-              <Product
-                key={e.id}
-                image={e.image}
-                amount={e.amount}
-                name={e.name}
-              />
+              <div className="product">
+                <Product
+                  key={e.id}
+                  image={e.image}
+                  amount={e.amount}
+                  name={e.name}
+                />
+                <Button product={e} action="add to cart" />
+              </div>
             );
           })}
         </Products>

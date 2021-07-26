@@ -11,7 +11,7 @@ interface Props {
 
 const Product: React.FC<Props> = ({ image, name, amount }) => {
   return (
-    <div className={styles.product}>
+    <div className={styles.producto}>
       <img src={image} alt={name} />
       <p className={styles.price}>{amount}</p>
       <h3>{name}</h3>

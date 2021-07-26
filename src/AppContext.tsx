@@ -17,12 +17,21 @@ const AppContext: React.FC = ({ children }) => {
   >([]);
 
   const handleAdd = (type: string, product: Producto): void => {
-    if (type == "add") {
-      let newCart = [...cart, product];
+    if (type == "add to cart") {
+      let newCart = [
+        ...cart,
+        {
+          ...product,
+          quantity: 1,
+          deleteId: cart[0]
+            ? (cart[cart.length - 1].deleteId as number) + 1
+            : 0,
+        },
+      ];
       setCart(newCart);
-      console.log(cart);
-    } else {
-      console.log("kupa");
+    } else if (type == "remove from cart") {
+      let newCart = cart.filter((e) => e.deleteId !== product.deleteId);
+      setCart(newCart);
     }
   };
   return (

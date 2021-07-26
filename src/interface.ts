@@ -6,4 +6,6 @@ export interface Producto {
   amount: string;
   category: string;
   featured: boolean;
+  quantity?: number;
+  deleteId?: number;
 }
