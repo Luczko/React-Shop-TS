@@ -11,16 +11,16 @@ function App() {
     <Router>
       <AppContext>
         <Switch>
-          <Route path="/about">
+          <Route path='/about'>
             <About />
           </Route>
-          <Route path="/catalog">
+          <Route path='/catalog'>
             <Catalog />
           </Route>
-          <Route path="/cart">
+          <Route path='/cart'>
             <Cart />
           </Route>
-          <Route path="/">
+          <Route path='/'>
             <Home />
           </Route>
         </Switch>
@@ -28,5 +28,9 @@ function App() {
     </Router>
   );
 }
+
+//testing sourcetree
+//lines lines
+//lines lines
 
 export default App;
